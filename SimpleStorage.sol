@@ -30,7 +30,8 @@ contract SimpleStorage {
     People[] public people;
 
     // functions in Solidity work the same as in JS
-    function store(uint256 _favoriteNumber) public {
+    // Add virtual keyword so that this function can be overwritten in 'ExtraStorage.sol'
+    function store(uint256 _favoriteNumber) public virtual{
         favoriteNumber = _favoriteNumber;
         // uint256 testVar = 5;
         // retrieve();    <--retreive here would cost gas since it is in a fucntion that would cost gas
