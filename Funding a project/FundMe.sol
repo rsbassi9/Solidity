@@ -12,6 +12,13 @@ contract FundMe {
 
     uint256 public minimumUsd = 50 * 1e18;
 
+    // Create an array of funders of all teh addresses that send funds
+
+    address [] public funders;
+
+    // Create a mapping of address to how much money each sends
+    mapping(address => uint256) public addressToAmountFunded;
+
 
     // payable keyword allows the function to have the ability to be read as a transaction function
 
@@ -30,7 +37,8 @@ contract FundMe {
         //msg.value gets the native blockchain tokens value
 
         require(msg.value >= minimumUsd, "Didn't send enough"); //18 decimal places due to Wei value in ETH
-
+        funders.push(msg.sender); // msg.sender is an always available function like msg.value
+        addressToAmountFunded[msg.sender] = msg.value;
     }
 
     // Create a function to get the price of our token in terms of USD. Use Chainlink Data feeds for this
@@ -57,3 +65,4 @@ contract FundMe {
     }
 
     //function withdraw(){}
+}
