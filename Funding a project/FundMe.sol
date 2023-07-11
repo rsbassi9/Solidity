@@ -42,5 +42,34 @@ contract FundMe {
         addressToAmountFunded[msg.sender] = msg.value;
     }
 
-    //function withdraw(){}
+    // When we withdraw funds to use, we will need to reset the funders array and addressToAmountFunded to 0. Use of for loop
+    function withdraw() public {
+        for(uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++){
+            address funder = funders[funderIndex]; // set the funder address to each index of the Funders array
+            addressToAmountFunded[funder] = 0; // reset the amount funded by the funders address to 0
+        }
+        //reset the array. funders now equals a new address array, with (0) elements to start.
+        funders = new address[](0);
+        
+                //withdraw the funds: 3 ways
+                    //transfer ( if gas > 2300, throws error)
+                        //msg.sender = address
+                        //payable(msg.sender) = payable address
+                            //payable(msg.sender).transfer(address(this).balance);
+            
+                    //send (if gas > 2300, throws bool. Therefore need to manage the bool with a require method)
+                        //bool sendSuccess = payable(msg.sender).send(address(this).balance);
+                        //require(sendSuccess, "Send failed");
+            
+                    //call (very powerful. dont need ABI to use this function on any other function in Ethereum)  (No gas limit. throws bool. Therefore need to manage the bool with a require method)
+                        //.call("") -- place any info you want to call from another function in the double quotes
+                        // below, we will use this like a transaction, so we need to use msg.value
+                        // since the function below returns 2 alues, we need to store them in ( , ). If we leave teh second variable blank (after the comma)
+                        // we are stating that we know theres a second variable returned, but we dont care to emphasize what to name it.
+            (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
+            require(callSuccess, "Call failed");
+
+
+
+    }
 }
