@@ -20,6 +20,14 @@ contract FundMe {
     // Create a mapping of address to how much money each sends
     mapping(address => uint256) public addressToAmountFunded;
 
+    // make a constructor. This function gets called immediately when a contract is deployed
+    // We want the withdraw function to be called only by the owner of the contract:
+    address public owner;
+
+    constructor(){
+        owner = msg.sender;  // whoever deploys the contract = owner
+    }
+
 
     // payable keyword allows the function to have the ability to be read as a transaction function
 
@@ -43,7 +51,9 @@ contract FundMe {
     }
 
     // When we withdraw funds to use, we will need to reset the funders array and addressToAmountFunded to 0. Use of for loop
-    function withdraw() public {
+    // by placing our modifier after public, we tell the function to first look at our morifier, do whats in it (i.e, set the address to that of the owner) then execute the rest of the code (_;)
+    function withdraw() public onlyOwner{
+
         for(uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++){
             address funder = funders[funderIndex]; // set the funder address to each index of the Funders array
             addressToAmountFunded[funder] = 0; // reset the amount funded by the funders address to 0
@@ -68,8 +78,12 @@ contract FundMe {
                         // we are stating that we know theres a second variable returned, but we dont care to emphasize what to name it.
             (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
             require(callSuccess, "Call failed");
+    }
 
-
-
+    // create a modifier to insert 
+    modifier onlyOwner {
+        require(msg.sender == owner, "Sender is not owner!");
+        _; // means execute the code in the function. here we are saying that the owner address needs to be verified before teh rest of the withdraw function executes
+            // if _; was placed above the require statement, then the function the modifier is used on would execute first, and then verify the owner.
     }
 }
