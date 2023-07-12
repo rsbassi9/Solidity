@@ -7,6 +7,10 @@ pragma solidity ^0.8.0;
 
 import"./PriceConverter.sol";
 
+// Save gas by storing out error as a fixed function, rather than stating each character in our require statements. This saves gas since we dont have to store each character
+// in "Sender is not owner!" on the blockchain
+error NotOwner();
+
 contract FundMe {
 
     using PriceConverter for uint256;
@@ -85,8 +89,12 @@ contract FundMe {
 
     // create a modifier to insert 
     modifier onlyOwner {
-        require(msg.sender == i_owner, "Sender is not owner!");
-        _; // means execute the code in the function. here we are saying that the owner address needs to be verified before teh rest of the withdraw function executes
+        
+        //require(msg.sender == i_owner, "Sender is not owner!"); // takes up too much space by having to store the characters on the blockchain. Instead:
+        if(msg.sender != i_owner) { revert NotOwner(); } // this is more gas efficient. It does the same thig the require statement does, without the conditional beforehand
+
+
+        _;  // means execute the code in the function. here we are saying that the owner address needs to be verified before teh rest of the withdraw function executes
             // if _; was placed above the require statement, then the function the modifier is used on would execute first, and then verify the owner.
     }
 }
