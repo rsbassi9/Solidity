@@ -102,9 +102,13 @@ contract FundMe {
         // if _; was placed above the require statement, then the function the modifier is used on would execute first, and then verify the owner.
     }
 
-    // what happens if someone sends this contract ETH without calling the fund function
-
-    // if people send money to this contract, or if the function doesnt exist, we can still trigger code using:
-    // receive()
-    // fallback()
+    // what happens if someone sends this contract ETH without calling the fund function?
+    // if people send money to this contract, but the function doesnt exist / is called incorrectly, we can still trigger the fund function using:
+    
+    receive() external payable {
+        fund();
+    }
+    fallback() external payable {
+        fund();
+    }
 }
