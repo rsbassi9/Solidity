@@ -104,6 +104,7 @@ contract FundMe {
 
     // what happens if someone sends this contract ETH without calling the fund function?
     // if people send money to this contract, but the function doesnt exist / is called incorrectly, we can still trigger the fund function using:
+    // This happens if someone sends funds using a wallet, rather than going directly through the fund function in FundMe.sol
     
     receive() external payable {
         fund();
