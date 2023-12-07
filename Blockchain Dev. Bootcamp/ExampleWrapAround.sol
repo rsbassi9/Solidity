@@ -30,7 +30,7 @@ contract ExampleWrapAround {
 
 //The problem is, those cases are actually pretty rare. Normally, we don't want an integer to roll over. That's why in 0.8 it changed to be the default behavior to error out if the maximum/minimum value is reached. But you can still enforce this behavior. With an unchecked block. Let's see an example.
 
-//Solidity 0.8 unchecked example¶
+//Solidity 0.8 unchecked example
 
 //If you take the following contract as an example, you see two functions. One is decrementing the myUint without checking for rollovers (highlighted in yellow) and one in the normal way.
 
