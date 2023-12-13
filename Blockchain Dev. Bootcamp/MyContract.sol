@@ -6,8 +6,13 @@ contract MyContract {
 
     string public ourString = "Hello World";
 
+    // use 'payable' keyword to be able to sedn ether when we update out String
+        // if statement used to perform a check and make usre ether is sent when the string is update - it will not update if we dotn send 1 ether with it
     function updateOurString(string memory _updateString) public payable{
-        ourString = _updateString;
+        if(msg.value == 1 ether) {
+            ourString = _updateString;
+        }
+        
     }
 
 }
