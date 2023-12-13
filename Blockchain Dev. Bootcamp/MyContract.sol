@@ -11,8 +11,8 @@ contract MyContract {
     function updateOurString(string memory _updateString) public payable{
         if(msg.value == 1 ether) {
             ourString = _updateString;
-        }
-        
+        } else {    // To send money stored in a smart contract back to an address(which must be payable):
+            payable(msg.sender).transfer(msg.value);
+        } 
     }
-
 }
