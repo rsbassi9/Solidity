@@ -6,7 +6,7 @@ contract MyContract {
 
     string public ourString = "Hello World";
 
-    function updateOurString(string memory _updateString) public {
+    function updateOurString(string memory _updateString) public payable{
         ourString = _updateString;
     }
 
