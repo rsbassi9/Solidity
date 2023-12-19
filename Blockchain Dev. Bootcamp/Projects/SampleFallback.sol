@@ -13,4 +13,13 @@ contract SampleFallback {
         lastValueSent = msg.value;
         lastFunctionCalled = "receive";
     }
+
+    // if there is data:
+// note: payable is optional here. 
+    // if you want a function thats called in case no other function matches the data, thjis function is called.
+    // if you want the fallback to also be able to receive a value - add the payable modifier
+    fallback() external payable{
+        lastValueSent = msg.value;
+        lastFunctionCalled = "fallback";
+    }
 }
