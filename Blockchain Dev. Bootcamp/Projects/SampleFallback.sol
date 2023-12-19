@@ -5,6 +5,12 @@ pragma solidity 0.8.14;
 contract SampleFallback {
 
     uint public lastValueSent;
+    string public lastFunctionCalled;
+
+    uint public myUint;
+    function setMyUint(uint _myNewUint) public {
+        myUint = _myNewUint;
+    }
 
 // a Receive function only relies on 2300gas (gas stipend) - which is very low.
 // If another contract interacts with this contract, nothing meaningful can really happen due to the low gas amount
@@ -23,3 +29,6 @@ contract SampleFallback {
         lastFunctionCalled = "fallback";
     }
 }
+
+//receive() is a function that gets priority over fallback() when a calldata is empty.
+//But fallback gets precedence over receive when calldata does not fit a valid function signature.
