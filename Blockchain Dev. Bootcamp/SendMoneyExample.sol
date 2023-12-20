@@ -8,4 +8,8 @@ contract SendWithdrawMoney {
     function deposit() public payable {
          balanceReceived += msg.value;
     }
+
+    function getContractBalance() public view returns(uint){
+    return address(this).balance; 
+    }
 }
