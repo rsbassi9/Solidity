@@ -12,4 +12,9 @@ contract SendWithdrawMoney {
     function getContractBalance() public view returns(uint){
     return address(this).balance; 
     }
+
+    function withdrawAll() public {
+        address payable to = payable(msg.sender);
+        to.transfer(getContractBalance());
+    }
 }
