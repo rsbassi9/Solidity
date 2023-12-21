@@ -19,6 +19,9 @@ contract ExampleMapping {
         myMapping[_index] = true;
     }
 
+//This function does several things:
+// It accesses the global msg-object and gets the senders address. So, if you are interacting with a specific address, then for the Smart Contract that address will be in msg.sender
+// It accesses the myAddressMapping mapping and sets the value "true" for the current address.
     function setMyAddressToTrue() public {
         myAddressMapping[msg.sender] = true;
     }
@@ -27,3 +30,19 @@ contract ExampleMapping {
         uintUintBoolMapping[_key1][_key2] = _value;
     }
 }
+
+/*
+NOTES:
+Mapping are an interesting datatype in Solidity. 
+They are accessed like arrays, but they have one major advantage: All key/value pairs are initialized with their default value.
+
+We can access a mapping with the brackets []. If we want to access the key "123" in our myMapping, then we'd simply write myMapping[123].
+
+Our mappings here are public, so Solidity will automatically generate a getter-function for us. That means, if we deploy the Smart Contract, we will automatically have a function that looks technically like this:
+
+function myMapping(uint index) returns (bool) {
+    return myMapping[index];
+}
+
+
+*/
