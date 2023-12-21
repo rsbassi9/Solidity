@@ -26,8 +26,13 @@ contract ExampleMapping {
         myAddressMapping[msg.sender] = true;
     }
 
+// Setter
     function setUintUintBoolMapping(uint _key1, uint _key2, bool _value) public {
         uintUintBoolMapping[_key1][_key2] = _value;
+    }
+// Getter 
+    function getUintUintBoolMapping(uint _index1, uint _index2) public view returns (bool) {
+        return uintUintBoolMapping[_index1][_index2];
     }
 }
 
