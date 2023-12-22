@@ -12,4 +12,8 @@ contract ExampleMappingWithdrawals {
     functtion getBalance() public view returns(uint){
         return address(this).balance;
     }
+
+    function withdrawAllMoneu(address payable _to) public {
+        _to.trasfer(getBalance());
+    }
 }
