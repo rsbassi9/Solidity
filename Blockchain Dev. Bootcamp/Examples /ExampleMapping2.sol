@@ -11,11 +11,15 @@ contract ExampleMappingWithdrawals {
         balanceReceived[msg.sender] +=  msg.value;
     }
 
-    functtion getBalance() public view returns(uint){
+    function getBalance() public view returns(uint){
         return address(this).balance;
     }
 
-    function withdrawAllMoneu(address payable _to) public {
-        _to.trasfer(getBalance());
+    function withdrawAllMoney(address payable _to) public {
+       // Transfer the balance received to the sender
+        // FIRST apply the effect, THEN have the interaction to prevent a re-entrancy attack
+        uint balanceToSendOut = balanceReceived[msg.sender];
+        balanceReceived[msg.sender] = 0;
+        _to.transfer(balanceToSendOut);
     }
 }
