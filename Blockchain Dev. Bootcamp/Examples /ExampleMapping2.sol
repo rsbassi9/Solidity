@@ -4,7 +4,9 @@ pragma solidity 0.8.15;
 
 contract ExampleMappingWithdrawals {
 
-
+    // Use a mapping to track the balances received
+    mapping(address=>uint) public balanceReceived;
+    
     function sendMoney() public payable {
 
     }
