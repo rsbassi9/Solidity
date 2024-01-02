@@ -15,6 +15,8 @@ contract ExampleMappingWithdrawals {
         return address(this).balance;
     }
 
+    // A function to withdraw only partial funds
+
     function withdrawAllMoney(address payable _to) public {
        // Transfer the balance received to the sender
         // FIRST apply the effect, THEN have the interaction to prevent a re-entrancy attack
@@ -23,3 +25,7 @@ contract ExampleMappingWithdrawals {
         _to.transfer(balanceToSendOut);
     }
 }
+
+/*When someone sends money using the "sendMoney" function, we track the msg.value (amount in Wei) with the balanceReceived mapping for the person who interacted with the Smart Contract.
+
+If that same person tries to withdraw money again using "withdrawAllMoney", we look in that mapping how much he sent there previously, then reset the mapping and send the amount. */
