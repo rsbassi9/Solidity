@@ -16,6 +16,11 @@ contract ExampleMappingWithdrawals {
     }
 
     // A function to withdraw only partial funds
+    function withdrawMoney(address payable _to, uint _amount) public {
+        require(_amount <= balanceReceived[msg.sender], "not enough funds");
+        balanceReceived[msg.sender] -= _amount;
+        _to.transfer(_amount);
+    }
 
     function withdrawAllMoney(address payable _to) public {
        // Transfer the balance received to the sender
