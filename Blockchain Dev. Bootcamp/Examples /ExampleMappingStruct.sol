@@ -27,7 +27,7 @@ contract MappingStructExample {
 
 
     // Then we replace: mapping(address => uint) balance;
-    mapping (address => Balance) balances;
+    mapping (address => Balance) public balances;
 
     function depositMoney() public payable {
        // Now, we can replace: balance[msg.sender] += msg.value;
