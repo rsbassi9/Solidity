@@ -29,6 +29,11 @@ contract MappingStructExample {
     // Then we replace: mapping(address => uint) balance;
     mapping (address => Balance) public balances;
 
+    //a function to ge the number of deposits
+    function getDepositNum(address _from, uint _numDeposit) public view returns(Transaction memory) {
+        return balances[_from].deposits[_numDeposit];
+    }
+
     function depositMoney() public payable {
        // Now, we can replace: balance[msg.sender] += msg.value;
     // We can access variables from our struct using "." . Below, we want to increase out totalBalance by the msg.value, but also want to record a new transaction
