@@ -35,5 +35,9 @@ contract wallet2 {
     // Now we can use the struct in the function, without the need for the "new" keyword
     function payContract() public payable {
         payment = PaymentReceivedStruct(msg.sender, msg.value);
+
+        // Alternatively, we can have the payment variable above broken up for clarity:
+       // payment.from = msg.sender;
+       // payment.amount = msg.value;
     }
 }
