@@ -20,3 +20,20 @@ contract PaymentReceived {
         amount = _amount;
     }
 }
+
+// How the same goal can be achieved with a  struct:
+
+contract wallet2 {
+
+    struct PaymentReceivedStruct {
+        address from;
+        uint amount;
+    }
+
+    PaymentReceivedStruct public payment;
+
+    // Now we can use the struct in the function, without the need for the "new" keyword
+    function payContract() public payable {
+        payment = PaymentReceivedStruct(msg.sender, msg.value);
+    }
+}
