@@ -22,6 +22,10 @@ contract PaymentReceived {
 }
 
 // How the same goal can be achieved with a  struct:
+    // Structs are needed to :
+            // a) save gas. Using a struct in this case saved about 2.5x less gas
+            // b) Complexity.
+            // c) to prevent repetition and increase simplicity
 
 contract wallet2 {
 
