@@ -26,8 +26,20 @@ contract MappingStructExample {
     }
 
 
+    // Then we replace: mapping(address => uint) balance;
+    mapping (address => Balance) balances;
+
     function depositMoney() public payable {
-        balance[msg.sender] += msg.value;
+       // Now, we can replace: balance[msg.sender] += msg.value;
+    // We can access vatiabloes from our struct using "." . Below, we want to increase out totalBalance by the msg.value, but also want to record a new transaction
+       balances[msg.sender].totalBalance += msg.value;
+
+       Transaction memory deposit = Transaction(msg.value, block.timestamp);
+       // now place this transaction on the current position of deposits (i.e, iots an array of [0,1,...], and then increment the number of deposits
+       // So, for the current address that deposits, we get the deposits, access the number of deposits and assign it as the deposit
+       balances[msg.sender].deposits[balances[msg.sender].numDeposits] = deposit;
+       balances[msg.sender].numdeposits++;
+       
     }
 
     function withdrawMoney(address payable _to, uint _amount) public {
