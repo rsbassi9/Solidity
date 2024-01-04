@@ -32,3 +32,9 @@ contract ExampleExceptionsRequire {
     
     }
 }
+
+/*
+NOTES:
+Require is here for user-input validation and if it evaluates to false, it will throw an exception.
+
+For example require(false) or require(1 == 0) will throw an exception. You can optionally add an error message require(false, "Some Error Message") */
