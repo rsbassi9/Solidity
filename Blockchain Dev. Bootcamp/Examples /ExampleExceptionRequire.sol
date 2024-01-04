@@ -12,11 +12,11 @@ contract ExampleExceptionsRequire {
 
     function withdrawMoney(address payable _to, uint _amount) public {
         
-        // check if the amount being sent is less than the balance received
+        // check if the amount is less than the balance received
         if(_amount <= balanceReceived[msg.sender]) {
-            //decerease teh balance Received by the amount
+            //decerease the balance Received by the amount
             balanceReceived[msg.sender] -= _amount;
-            // transfer teh amount
+            // transfer the amount
             _to.transfer(_amount);
         }
     }
