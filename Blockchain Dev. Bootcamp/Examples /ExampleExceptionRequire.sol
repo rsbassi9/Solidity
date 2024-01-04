@@ -24,12 +24,11 @@ contract ExampleExceptionsRequire {
 
         // In order to provide the user with a better experience, we want them to know why it failed. here we use require:
         // If the first argument is false, the entire transaction is rolled bakc, and the error message is displayed
-        require(_amount <= balanceReceived[msg.sender], "Not enough funds, aborting!") {
+        require(_amount <= balanceReceived[msg.sender], "Not enough funds, aborting!");
             //decerease the balance Received by the amount
             balanceReceived[msg.sender] -= _amount;
             // transfer the amount
             _to.transfer(_amount);
-        }
     
     }
 }
