@@ -37,4 +37,12 @@ contract ExampleExceptionsRequire {
 NOTES:
 Require is here for user-input validation and if it evaluates to false, it will throw an exception.
 
-For example require(false) or require(1 == 0) will throw an exception. You can optionally add an error message require(false, "Some Error Message") */
+For example require(false) or require(1 == 0) will throw an exception. You can optionally add an error message require(false, "Some Error Message")
+
+DEPLYING AND RUNNING THE CONTRACT:
+Deploy the Smart Contract. Head over to the "Deploy & Run Transactions" Plugin and Deploy it.
+Copy your address into the withdraw money field.
+Enter a number, like 1000, and
+Hit withdrawMoney --- If you enter a higher amount than 1000, you get the error in the log window
+
+ */
