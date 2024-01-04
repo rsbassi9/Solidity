@@ -40,6 +40,7 @@ Require is here for user-input validation and if it evaluates to false, it will 
 For example require(false) or require(1 == 0) will throw an exception. You can optionally add an error message require(false, "Some Error Message")
 
 DEPLYING AND RUNNING THE CONTRACT:
+**Make sure the contract is being run on the correct version**
 Deploy the Smart Contract. Head over to the "Deploy & Run Transactions" Plugin and Deploy it.
 Copy your address into the withdraw money field.
 Enter a number, like 1000, and
