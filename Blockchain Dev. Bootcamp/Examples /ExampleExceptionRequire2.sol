@@ -10,10 +10,10 @@ contract ExampleExceptionsRequire {
     mapping(address => uint8) public balanceReceived;
 
     function receiveMoney() public payable {
-        // to prevent the above from happening, use assert statements:
-        // this works kind of a require satement. if the statement evaluates to false, the execution of the smart contract is stopped.
-        // here we assert that the msg.value is the same ase the unsigned interger8 of our msg.value. However, since this cannot be true due to the rollback functionality
-        // what happens with an assert statement (in this case, for example, since the numbers cannot match) is that the contract goes into a panic mode, eats all the gas, and ensures that this cannot be executed.
+        // To prevent the above from happening, use assert statements:
+        // This works kind of a require satement. if the statement evaluates to false, the execution of the smart contract is stopped.
+        // Here, we assert that the msg.value is the same ase the unsigned interger8 of our msg.value. However, since this cannot be true due to the rollover functionality
+        // What happens with an assert statement (in this case, for example, since the numbers cannot match) is that the contract goes into a panic mode, eats all the gas, and ensures that this cannot be executed.
         assert(msg.value == uint8(msg.value));
         balanceReceived[msg.sender] += uint8(msg.value);
     }
@@ -27,3 +27,9 @@ contract ExampleExceptionsRequire {
     
     }
 }
+
+/*
+NOTES:
+Assert is used to check invariants. Those are states our contract or variables should never reach, ever. For example, if we decrease a value then it should never get bigger, only smaller.
+Asserts are here to check states of your Smart Contract that should never be violated. 
+ */

@@ -7,7 +7,7 @@ contract ExampleExceptionsRequire {
     mapping(address => uint) public balanceReceived;
 
     function receiveMoney() public payable {
-        balanceReceived[msg.sender] += balanceReceived;
+        balanceReceived[msg.sender] += msg.value;
     }
 
     function withdrawMoney(address payable _to, uint _amount) public {
