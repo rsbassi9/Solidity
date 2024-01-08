@@ -31,3 +31,22 @@ contract ErrorHandling {
         }                     
     }
 }
+
+/*
+Named Exceptions and Custom Errors¶
+Another new concept is Named Exceptions. They are defined in your Contract, but they can't be really caught (yet) by (try/catch), which somehow makes them problematic. I still think they are a great addition.
+
+So, by default, when require evaluates to false, it will revert with a generic Error(string) error. You can define other Errors here. Let me give you an example:
+
+//SPDX-License-Identifier: MIT
+pragma solidity 0.8.14;
+
+contract WillThrow {
+    error ThisIsACustomError(string, string);
+    function aFunction() public pure {
+        revert ThisIsACustomError("Text 1", "text message 2");
+    }
+}
+With this, you can give certain arguments, like a state of balance or other things, to the outside world before aborting the transaction and rolling back.
+
+*/
