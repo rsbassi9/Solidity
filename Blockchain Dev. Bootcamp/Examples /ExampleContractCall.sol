@@ -18,7 +18,7 @@ contract ContractTwo {
         // What if we dont know that the smart contract we want to send to is a smart contract?
         // Use the encodeEithSignature function
         bytes memory payload = abi.encodeWithSignature("depost()");
-        (bool success, )_contractOne.{value: 10, gas: 100000}(payload);
+         (bool success, ) = _contractOne.call{value: 10, gas: 100000}(payload);
         require (success);
 
         
