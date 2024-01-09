@@ -8,12 +8,18 @@ contract Sender {
     receive() external payable {}
 
 // Both the functions below send 10 Wei to the _to address. So which one should you use in a scenario, and why?
+    //this function throws an exception when the transfer fails
     function withdrawTransfer(address payable _to) public {
         _to.transfer(10);
     }
 
+    // This function returns a bool. 
+    // In case you are using a low level interaction with smart contracts, the send function is a low level interaction.
+    // It doesnt care about whats happening on the other side. All it cares about is sending the Wei, and if sucessful, returns a boolean.
     function withdrawSend(address payable _to) public {
-        _to.send(10);
+       bool isSent = _to.send(10);
+
+       require(isSent, "Sending the funds was unsuccessful.");
     }
 }
 
