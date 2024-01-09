@@ -16,3 +16,30 @@ contract Sender {
         _to.send(10);
     }
 }
+
+//to explain the difference, note the contract below
+    // The first is a receiver function that has no action and receives any funds
+    // It simply receives the funds 
+contract ReceiverNoAction {
+    
+    //give it the ability to return a balance
+    function balance() public view returns(uint) {
+        return address(this).balance;
+    }
+    receive() external payable {} // 
+}
+
+    // The second has an action, where it writes to a storage variable (balanceReceived).
+    // This costs a lot of gase, especially the first time this write happens
+contract ReceiverAction {
+    uint public balanceReceived;
+
+    receive() external payable {
+        balanceReceived += msg.value;
+    }
+
+    //give it the ability to return a balance
+    function balance() public view returns(uint) {
+        return address(this).balance;
+    }
+}
