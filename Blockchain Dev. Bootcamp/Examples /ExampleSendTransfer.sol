@@ -49,3 +49,10 @@ contract ReceiverAction {
         return address(this).balance;
     }
 }
+
+/*
+NOTES:
+External function calls are used if you know the samrt contract you are sneding funds to.
+Low level cals are used if you dont know the smart contract you will be seding funds to
+
+ */
