@@ -33,7 +33,8 @@ contract ErrorHandling {
 }
 
 /*
-Named Exceptions and Custom Errors¶
+NOTES:
+Named Exceptions and Custom Errors
 Another new concept is Named Exceptions. They are defined in your Contract, but they can't be really caught (yet) by (try/catch), which somehow makes them problematic. I still think they are a great addition.
 
 So, by default, when require evaluates to false, it will revert with a generic Error(string) error. You can define other Errors here. Let me give you an example:
