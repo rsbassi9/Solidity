@@ -55,4 +55,12 @@ NOTES:
 External function calls are used if you know the samrt contract you are sneding funds to.
 Low level cals are used if you dont know the smart contract you will be seding funds to
 
+Theres more than one way to send money:
+  We know that an address has a property .balance which gives you the balance in wei. 
+  We also know that an address has a function named .transfer(...) which lets you transfer from the contract to the address an amount in wei.  
+
+   There is another function called .send(...) which works like .transfer(...), but with a major difference: If the target address is a contract and the transfer fails, then .transfer will result in an exception and .send will simply return false, but the transaction won't fail. 
+
+
+
  */
