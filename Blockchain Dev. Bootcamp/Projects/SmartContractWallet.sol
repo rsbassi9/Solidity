@@ -78,7 +78,7 @@ contract SmartContractWallet {
             require(allowance[msg.sender] >= _amount, "You are trying to send more than you are allowed, aborting");
             require(isAllowedToSend[msg.sender], "You are not allowed to send anything from this smart contract, aborting");
 
-            //reduce teh allowance once sent
+            //reduce the allowance once sent
             allowance[msg.sender] -= _amount;
         }
 
