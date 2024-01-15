@@ -2,6 +2,15 @@
 
 pragma solidity 0.8.16;
 
+// Add a Consumer wallet to test interactability of our main contract
+contract Consumer {
+    function getBalance() public view returns (uint){
+        return address(this).balance;
+    }
+
+    function deposit() public payable {}
+}
+
 contract SmartContractWallet {
 
     address payable public owner;
