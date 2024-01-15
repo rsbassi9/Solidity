@@ -17,7 +17,7 @@ contract SmartContractWallet {
     address payable nextOwner;
     // A Way to keep track of whether a guardian has voted on the address or not
     mapping(address => mapping(address => bool)) nextOwnerGuardiantVotedBool;
-    uint guardianResetCount;
+    uint guardiansResetCount;
     uint public constant confirmationsFromGuardianForReset = 3;
 
     // Set the owner of the wallet
@@ -32,7 +32,7 @@ contract SmartContractWallet {
     }
 
     // Make a function to set the new owner after the guardians agree
-    functionproposeNewOwner(address payable _newOwner) public {
+    function proposeNewOwner(address payable _newOwner) public {
         require(guardians[msg.sender], "You are not a guardian of this wallet, aborting!");
         require(nextOwnerGuardiantVotedBool[_newOwner][msg.sender] == false, "You already voted, aborting");
         // set the new owner of the wallet, and then reset the guardian count
