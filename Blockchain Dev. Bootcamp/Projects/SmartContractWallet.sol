@@ -12,6 +12,13 @@ contract SmartContractWallet {
 
     //Set the owner to a different address by a minimum of 3 guardians in case the funds are lost (e.g, the owner loses their private key)
     mapping(address => bool) public guardians;
+    
+    // We will the want the ability to set a new owner automatically when 3 the guardians agree on teh new owner
+    address payable nextOwner;
+    // A Way to keep track of whether a guardian has voted on the address or not
+    mapping(address => mapping(address => bool)) nextOwnerGuardiantVotedBool;
+    uint guardianResetCount;
+    uint public constant confirmationsFromGuardianForReset = 3;
 
     // Set the owner of the wallet
     constructor() {
@@ -22,6 +29,25 @@ contract SmartContractWallet {
     function setGuardian(address _guardian, bool _isGuardian) public {
         require(msg.sender == owner, "You are not the owner, aborting!");
         guardians[_guardian] = _isGuardian;
+    }
+
+    // Make a function to set the new owner after the guardians agree
+    functionproposeNewOwner(address payable _newOwner) public {
+        require(guardians[msg.sender], "You are not a guardian of this wallet, aborting!");
+        require(nextOwnerGuardiantVotedBool[_newOwner][msg.sender] == false, "You already voted, aborting");
+        // set the new owner of the wallet, and then reset the guardian count
+        if(_newOwner != nextOwner) {
+            nextOwner = _newOwner
+            guardiansResetCount = 0;
+        }
+
+        guardiansResetCount++;
+
+        // Count the guardians that vote until all 3 vote.
+        if(guardiansResetCount >= confirmationsFromGuardianForReset) {
+            owner = nextOwner;
+            nextOwner = payable(address(0)); 
+        }
     }
 
     // Setter function to prevent sending if you are not allowed to spend any funds
