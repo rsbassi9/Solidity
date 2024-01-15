@@ -4,7 +4,7 @@ pragma solidity 0.8.16;
 
 contract SmartContractWallet {
 
-    address payable owner;
+    address payable public owner;
 
     // Allowance functionality to spend a certain amount of funds
     mapping(address => uint) public allowance;
