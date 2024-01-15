@@ -90,6 +90,17 @@ contract SmartContractWallet {
     // Allow the wallet to receiver funds no matter what
     receive() external payable {}
 
-    
+    /*
+    NOTES:
+
+    You might see already what this shows you... With on-chain wallets, you get a lot more flexibility than with your traditional private-key based wallet. You can implement things like:
+
+    1. Multi-Signature Transaction Whitelisting, where it needs m-out-of-n people to agree to a transaction
+    2. Emergency operations, like account freezing, or withdrawal limits per day/month, ...
+    3. Whitelisting and Account Sharing
+    4. Account Recovery by using m-out-of-n people to reset an owner, or re-authorize a new person.
+    5. And for the sophisticated DeFi Traders out there, there are functions that help save gas costs, bundle transactions and templates to execute transactions to deleverage positions etc...
+
+     */
 
 }
