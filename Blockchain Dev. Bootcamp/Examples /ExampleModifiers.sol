@@ -15,7 +15,7 @@ contract InheritanceModifierExample{
         tokenBalance[owner] = 100;
     }
 
-    // Syntax for a modifier
+    // Syntax for a modifier. When this is injected into functions, the code before _; is called, then the function the modifier is injected into is called.
     modifier onlyOwner() {
         require(msg.sender == owner, "You are not allowed");
         _;
