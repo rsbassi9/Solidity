@@ -33,5 +33,11 @@ contract InheritanceModifierExample{
         tokenBalance[msg.sender] += msg.value / tokenPrice;
     }
 
+// A function to allow sending of tokens
+    function sendToken(address _to, uint _amount) public {
+        require((tokenBalance[msg.sender] >= _amount), "not enough tokens");
+        tokenBalance[msg.sender] -= _amount;
+        tokenBalance[_to] += _amount;
+    }
 
 }
