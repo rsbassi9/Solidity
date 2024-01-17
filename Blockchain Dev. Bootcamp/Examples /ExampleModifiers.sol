@@ -15,6 +15,12 @@ contract InheritanceModifierExample{
         tokenBalance[owner] = 100;
     }
 
+    // Syntax for a modifier
+    modifier onlyOwner() {
+        require(msg.sender == owner, "You are not allowed");
+        _;
+    }
+
 // Only the owner can create and burn tokens
     function createNewToken() public {
         require(msg.sender == owner, "You are not allowed");
