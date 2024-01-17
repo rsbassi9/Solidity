@@ -47,3 +47,26 @@ contract InheritanceModifierExample is Owner{
     }
 
 }
+
+/*
+INSTRUCTIONS:
+Select Account#1 from the Accounts Dropdown
+Deploy the Contract
+
+Buy Tokens¶
+Switch over to Account #2
+Enter 1 into the value field
+Select "Ether" from the Dropdown
+Buy 1 Token for 1 Ether by hitting the purchase button
+
+Get the Token Balance¶
+Now lets look if you have the right balance. Copy your address, fill it into the input field for "tokenBalance" and see if the balance is 1
+
+Burn Tokens¶
+Now lets see what happens if you stay on Account#2 and try to burn tokens:
+
+Try to burn with Account #2
+Observe the Error message
+Which is coming from the require statement
+
+ */
