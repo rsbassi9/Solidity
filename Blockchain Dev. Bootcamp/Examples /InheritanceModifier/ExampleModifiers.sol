@@ -2,6 +2,15 @@
 
 pragma solidity ^0.8.16;
 
+
+//IMPORTS:
+    // Golbal level:
+        //import "filename";
+    // import all members of a file:
+        //import * as symbolName from "filename";
+    //import specific members of a file:
+        // import {symbol as alias, symbol2} from "filename";
+
 // Import statement to read the Owner smart contract file
 import "./Ownable.sol";
 
