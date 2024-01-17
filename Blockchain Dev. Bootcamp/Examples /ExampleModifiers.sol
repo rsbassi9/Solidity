@@ -26,4 +26,12 @@ contract InheritanceModifierExample{
         tokenBalance[owner]--;
     }
 
+// A function to allow purchase of tokens
+    function purchaseToken() public payable {
+        require((tokenBalance[owner] * tokenPrice) / msg.value > 0, "not enough tokens");
+        tokenBalance[owner] -= msg.value / tokenPrice;
+        tokenBalance[msg.sender] += msg.value / tokenPrice;
+    }
+
+
 }
