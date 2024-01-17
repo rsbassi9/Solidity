@@ -2,17 +2,31 @@
 
 pragma solidity ^0.8.16;
 
-contract InheritanceModifierExample{
-
-    mapping(address => uint) public tokenbalance;
-
+// Place the owner into its own smart contract and call it in the other - inheritance
+contract Owner{
     address owner;
+
+    constructor(){
+        owner = msg.sender;
+    }
+
+    // Syntax for a modifier
+    modifier onlyOwner() {
+        require(msg.sender == owner, "You are not allowed");
+        _;
+    }
+}
+
+// Make some changes and remove the owner definition from the second contract as it is already defined in the first
+// Specify that this contract has a base smart contract - Owner, to allow it to inherit from it
+contract InheritanceModifierExample is Owner{
+
+    mapping(address => uint) public tokenBalance;
 
     uint tokenPrice = 1 ether;
 
     constructor() {
-        owner = msg.sender;
-        tokenBalance[owner] = 100;
+        tokenBalance[msg.sender] = 100;
     }
 
     // Syntax for a modifier. When this is injected into functions, the code before _; is called, then the function the modifier is injected into is called.
