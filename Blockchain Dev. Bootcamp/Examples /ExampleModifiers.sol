@@ -2,20 +2,8 @@
 
 pragma solidity ^0.8.16;
 
-// Place the owner into its own smart contract and call it in the other - inheritance
-contract Owner{
-    address owner;
-
-    constructor(){
-        owner = msg.sender;
-    }
-
-    // Syntax for a modifier
-    modifier onlyOwner() {
-        require(msg.sender == owner, "You are not allowed");
-        _;
-    }
-}
+// Import statement to read the Owner smart contract file
+import "./Ownable.sol";
 
 // Make some changes and remove the owner definition from the second contract as it is already defined in the first
 // Specify that this contract has a base smart contract - Owner, to allow it to inherit from it
