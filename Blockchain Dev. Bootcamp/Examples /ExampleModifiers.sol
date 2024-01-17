@@ -21,14 +21,12 @@ contract InheritanceModifierExample{
         _;
     }
 
-// Only the owner can create and burn tokens
-    function createNewToken() public {
-        require(msg.sender == owner, "You are not allowed");
+// Only the owner can create and burn tokens. Specify the Modifier and remove old repetitive code
+    function createNewToken() public onlyOwner {
         tokenBalance[owner]++;
     }
 
-    function burnToken() public {
-        require(msg.sender == owner, "You are not allowed");
+    function burnToken() public onlyOwner {
         tokenBalance[owner]--;
     }
 
