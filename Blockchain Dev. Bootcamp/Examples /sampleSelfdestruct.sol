@@ -13,3 +13,15 @@ contract StartStopUpdateExample {
         selfdestruct(payable(msg.sender));
     }
 }
+
+/*
+Notes:
+The data on the blockchain is forever, but the state is not. 
+That means, we can not erase information from the Blockchain, but we can update the current state so that you can't interact with an address anymore going forward. 
+Everyone can always go back in time and check what was the value on day X, but, once the function selfdestruct() is called, you can't interact with a Smart Contract anymore.
+
+The contract should be easily readable and the only surprise will be, what happes when you interact with the smart contract after it has been destroyed. 
+Once you call destroySmartContract, the address of the Smart Contract will contain no more code. 
+You can still send transactions to the address and transfer Ether there, but there won't be any code that could send you the Ether back.
+
+ */
