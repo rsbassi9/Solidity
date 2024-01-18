@@ -13,7 +13,8 @@ contract MyToken is ERC20, Ownable {
         Ownable(initialOwner)
     {}
 
+// mint is a public function, that can be callet externally
     function mint(address to, uint256 amount) public onlyOwner {
-        _mint(to, amount);
+        _mint(to, amount); //_mint is an internal function that can only be called from our smart contract
     }
 }
