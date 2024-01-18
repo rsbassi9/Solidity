@@ -10,6 +10,8 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 contract CoffeeToken is ERC20, AccessControl {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
+    event CoffeePurchased(address indexed receiver);
+
     constructor(address defaultAdmin, address minter) ERC20("CoffeeToken", "CFE") {
         _grantRole(DEFAULT_ADMIN_ROLE, defaultAdmin);
         _grantRole(MINTER_ROLE, minter);
@@ -23,5 +25,6 @@ contract CoffeeToken is ERC20, AccessControl {
     // Create the ability to use tokens to buy a coffee
     function burOneCoffee() public {
         _burn(_msgSender(), 1);
+        emit CoffeePurchased(_msgSender());
     }
 }
