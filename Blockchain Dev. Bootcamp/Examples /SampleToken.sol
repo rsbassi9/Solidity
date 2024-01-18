@@ -15,8 +15,13 @@ contract CoffeeToken is ERC20, AccessControl {
         _grantRole(MINTER_ROLE, minter);
     }
 
-// mint is a public function, that can be callet externally
+    // mint is a public function, that can be callet externally
     function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {
         _mint(to, amount);
+    }
+
+    // Create the ability to use tokens to buy a coffee
+    function burOneCoffee() public {
+        _burn(_msgSender(), 1);
     }
 }
