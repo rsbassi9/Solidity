@@ -26,7 +26,7 @@ abstract contract ERC20 {
         // Only allow sending of whole numbers. if a partial token is send, eg 1.5 ETH, send back 0.5 ETH
         uint tokensToTransfer = msg.value / tokenPriceInWei;
         uint remainder = msg.value - tokensToTransfer * tokenPriceInWei;
-        token.transferFrom(tokenOwner, msg.sender, tokensToTransfer);
+        token.transferFrom(tokenOwner, msg.sender, tokensToTransfer * 10 ** token.decimals());
         payable(msg.sender).transfer(remainder);
     }
 
