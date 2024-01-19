@@ -30,4 +30,12 @@ abstract contract ERC20 {
         payable(msg.sender).transfer(remainder);
     }
 
+    /**
+     * If you have a look at famous DeFi projects, such as Uniswap{target=blank}, you'll see they are _using other smart contract, they are not integrating everything themselves.
+
+    This is also something we want to utilize in this project!
+
+    We will use the CoffeeToken (SampleToken.sol). But instead of integrating a token sale directly, we let another contract take control of some of the tokens through an allowance functionality.
+     */
+
 }
