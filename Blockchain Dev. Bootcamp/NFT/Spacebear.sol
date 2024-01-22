@@ -2,6 +2,7 @@
 pragma solidity ^0.8.20;
 
 // We run NFTs off of the ERC 721 token, based on deeds from real estate: https://docs.openzeppelin.com/contracts/5.x/erc721
+// The ERC721 is an ERC20 token where each token has a unique ID and can have an URL for more MetaData.
 
 // Use the openzeppelin contract wizard for ERC721 to generate this: https://docs.openzeppelin.com/contracts/5.x/wizard
 
