@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity 0.8.21;
 
 // We run NFTs off of the ERC 721 token, based on deeds from real estate: https://docs.openzeppelin.com/contracts/5.x/erc721
 // The ERC721 is an ERC20 token where each token has a unique ID and can have an URL for more MetaData.
@@ -58,3 +58,23 @@ contract Spacebear is ERC721, ERC721URIStorage, Ownable {
         return super.supportsInterface(interfaceId);
     }
 }
+
+/*
+An example of the JSON file:
+{
+    "name": "Spacebear Token 🧸",
+    "description": "Introducing the future of Cuteness. A Teddybear Token. Floating in Space. Save them by getting this NFT. Cuddle each one of them. You need them. Buy them now. Also, they are coming from ethereum-blockchain-developer.com",
+    "image": "https://ethereum-blockchain-developer.com/2022-06-nft-truffle-hardhat-foundry/nftdata/spacebear_1.webp",
+    "external_url": "https://ethereum-blockchain-developer.com",
+    "attributes": [
+        {
+            "trait_type": "Artefact", 
+            "value": "Teddybear"
+        },
+        {
+            "trait_type": "Collection", 
+            "value": "Genesis"
+        }
+    ]
+}
+ */
