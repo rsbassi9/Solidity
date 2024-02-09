@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.21;
+pragma solidity ^0.8.4;
 
 // We run NFTs off of the ERC 721 token, based on deeds from real estate: https://docs.openzeppelin.com/contracts/5.x/erc721
 // The ERC721 is an ERC20 token where each token has a unique ID and can have an URL for more MetaData.
